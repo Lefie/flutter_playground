@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'text_example.dart';
+import "column_example.dart";
+import 'row_example.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,30 +19,13 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("Stateless Widget")
         ),
-        body: ContainerExampleWidget(),)
+        body: PaddingExampleWidget(),
+      )
     );
   }
 }
 
-class TextExampleWidget extends StatelessWidget {
 
-  const TextExampleWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Text(
-          textAlign: TextAlign.center,
-          "I am text living inside a text widget",
-          style: TextStyle(
-            fontSize: 24,
-            color:Colors.blue,
-          )
-      ),
-    );
-  }
-}
 
 class ContainerExampleWidget extends StatelessWidget {
   const ContainerExampleWidget({super.key});
@@ -59,3 +45,39 @@ class ContainerExampleWidget extends StatelessWidget {
     );
   }
 }
+
+class CenterExampleWidget extends StatelessWidget {
+
+  const CenterExampleWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      width: 100,
+      color: Colors.blue,
+      child: Center(child: Text("Hello Flutter") ,),
+    );
+  }
+
+}
+
+class PaddingExampleWidget extends StatelessWidget {
+
+  const PaddingExampleWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      width: 100,
+      color: Colors.blue,
+      child: Padding(
+        padding: EdgeInsets.all(10),
+        child: Text("Hello Flutter")
+        ,),
+    );
+  }
+
+}
+
