@@ -3,6 +3,7 @@ import 'text_example.dart';
 import "column_example.dart";
 import 'row_example.dart';
 import "profile_card.dart";
+import "contact_list.dart";
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           title: Text("Stateless Widget"),
           backgroundColor: Colors.blue,
         ),
-        body:SingleChildScrollViewHorizontalExample(),
+        body:ContactList(),
       )
     );
   }
