@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class ContactList extends StatelessWidget {
   const ContactList({super.key});
 
-
-  @override
-  Widget build(BuildContext context) {
-    final List<Contact> contacts = [Contact(first_name: "Lemon", last_name: "Ruan", phone_number: "9299292929",),
+  static const List<Contact> contacts = [Contact(first_name: "Lemon", last_name: "Ruan", phone_number: "9299292929",),
     Contact(first_name: "Tess", last_name: "Jackson", phone_number: "9299292929",),
     Contact(first_name: "Tom", last_name: "Holland", phone_number: "9299292929",),
     Contact(first_name: "Anne", last_name: "Ramirez", phone_number: "9299292929",),];
 
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       width: 400,
       decoration: BoxDecoration(
