@@ -81,37 +81,39 @@ class _TextControllerExampleState extends State<TextControllerExample> {
            ],),
            SizedBox(height:20),
            Expanded(
-             child: SizedBox(
-             height:500,
-             width: 300,
-             child: ListView.builder(
-               itemCount: bookTitleList.length,
-               itemBuilder: (context, index) {
-                 return GestureDetector(
-                   onTap: (){
-                     print("Card Tapped!");
+             child:
+                 Container(
+                 width:300,
+                 child: ListView.builder(
+                   itemCount: bookTitleList.length,
+                   itemBuilder: (context, index) {
+                     return GestureDetector(
+                       onTap: () {
+                         print("Card Tapped!");
+                       },
+                       child: SizedBox(
+                         height: 110,
+                         child: Card(
+                           color: Colors.yellow[100],
+                           shape: RoundedRectangleBorder(
+                             borderRadius: BorderRadius.circular(
+                                 16.0), // Change this number to adjust roundness
+                           ),
+                           child: Column(
+                             children: [
+                               SizedBox(height: 15,),
+                               Text("${bookTitleList[index]}",
+                                   style: TextStyle(fontWeight: FontWeight.bold)),
+                               SizedBox(height: 15,),
+                               Text("${bookAuthorList[index]}"),
+                             ],
+                           ),
+                         ),
+                       ),
+                     );
                    },
-                   child: SizedBox(
-                     height: 100,
-                     child: Card(
-                     color: Colors.yellow[100],
-                     shape: RoundedRectangleBorder(
-                       borderRadius: BorderRadius.circular(16.0), // Change this number to adjust roundness
-                     ),
-                     child: Column(
-                       children: [
-                         SizedBox(height: 15,),
-                         Text("${bookTitleList[index]}", style: TextStyle(fontWeight: FontWeight.bold)),
-                         SizedBox(height: 15,),
-                         Text("${bookAuthorList[index]}"),
-                       ],
-                     ),
-                   ),
-                 ),
-                 );
-               }
-           ),),
-           ),
+                 ), )
+             ),
         ],
         ),
         ),
