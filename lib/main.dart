@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
-import 'list_view_example.dart';
-import 'list_view_builder_example.dart';
-import 'list_view_separated.dart';
+import 'navigation_between_screens.dart';
+import "contact_list.dart";
 
 void main() {
   runApp(const MyApp());
 }
+
+
+
+final List<Contact> contacts = [
+  Contact('Alice', 'alice@email.com', '123-4567'),
+  Contact('Bob', 'bob@email.com', '234-5678'),
+];
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -19,36 +25,24 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Scaffold(
-      body: Center(
-            child:
-            Container(
-            width: 300,
-            height: 300,
-            color: Color(0xFF82A1F3),
-            child: ListViewSeparated(profiles: people)
-            ),
-          ),
-      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomeScreen() ,
+        '/contacts': (context) => ContactsListScreen(contacts:contacts),
+      },
     );
   }
 }
 
 
-List<Map<String, dynamic>> people = [
-  {"name": "Winnie",
-    "email": "winnie@gmail.com",
-    "dog_person": false
-  },
-  {"name": "Jack",
-    "email": "jack@gmail.com",
-    "dog_person": true
-  },
-  {"name": "Lily",
-    "email": "lily@gmail.com",
-    "dog_person": true
-  },
-];
+
+
+
+
+
+
+
+
 
 
 
