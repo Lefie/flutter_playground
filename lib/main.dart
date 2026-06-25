@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'counter_app.dart';
 import 'text_field_example.dart';
 import 'text_controller.dart';
+import 'some_widget.dart';
 
 
 void main() {
@@ -22,11 +23,63 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(title: Text("Stateful Widgets"),),
-        body: TextControllerExample(),
+        body: CounterPage(),
       ),
     );
   }
 }
+
+
+// class content
+class CounterPage extends StatefulWidget {
+  @override
+  _CounterPageState createState() => _CounterPageState();
+}
+
+class _CounterPageState extends State<CounterPage> {
+  // State variables go here
+  int _counter = 0;
+
+  void increment() {
+    setState(() {
+      _counter += 1;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Column(
+          children: [
+            Text('$_counter', style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 32
+            )),
+            SizedBox(height:10),
+            ElevatedButton(
+              onPressed: (){
+                print("+ button pressed!!!");
+                increment();
+              },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.blue[700],
+              ),
+              child: Text("+")
+            ),
+          ],
+        )
+      );
+  }
+}
+
+
+
+
+
+
+
+
 
 
 
