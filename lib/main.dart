@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
             width: 300,
             height: 300,
             color: Color(0xFF82A1F3),
-            child: ListViewSeparated(profiles: people),
+            child: ListViewSeparated(profiles: people)
             ),
           ),
       ),
