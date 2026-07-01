@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           title: Text("Stateful Widgets", style: TextStyle(color: Colors.white)),
           backgroundColor: Colors.black38,
         ),
-        body: SocialMediaPost(),
+        body: CounterPage(),
       ),
     );
   }
