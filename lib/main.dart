@@ -3,6 +3,7 @@ import 'counter_app.dart';
 import 'text_field_example.dart';
 import 'text_controller.dart';
 import 'some_widget.dart';
+import 'social_media_example.dart';
 
 
 void main() {
@@ -22,8 +23,12 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: Scaffold(
-        appBar: AppBar(title: Text("Stateful Widgets"),),
-        body: CounterPage(),
+        backgroundColor: Color(0xff191919),
+        appBar: AppBar(
+          title: Text("Stateful Widgets", style: TextStyle(color: Colors.white)),
+          backgroundColor: Colors.black38,
+        ),
+        body: SocialMediaPost(),
       ),
     );
   }
@@ -67,6 +72,13 @@ class _CounterPageState extends State<CounterPage> {
               ),
               child: Text("+")
             ),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: (){
+              print("number should decrease");
+              setState(() {
+                _counter -= 1;
+              });
+            }, child: Text("-"))
           ],
         )
       );
