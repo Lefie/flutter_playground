@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'volunteer_form.dart';
+import 'outreach_intake_form.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,18 +19,18 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: Scaffold(
+        backgroundColor: Color(0xFF252525),
         appBar: AppBar(
           title: Text("Forms in Flutter", style:TextStyle(color:Colors.white70) ),
-          backgroundColor: Color(0xFF1C294A),
+          backgroundColor: Color(0xFF1C1C1C),
         ),
          body: Center(
-          child: SizedBox(width:400,
+          child: SizedBox(
+            width: 300,
             child: Column(
                children: [
-              SizedBox(height: 30,),
-              Text("Volunteer Interest Form", style: TextStyle(fontSize: 32),),
               SizedBox(height:30),
-              VolunteerForm(),
+              Expanded(child: IntakeForm()),
             ],
           ),
           ),
