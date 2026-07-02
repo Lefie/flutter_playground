@@ -9,16 +9,21 @@ class TextControllerExample extends StatefulWidget {
 }
 
 class _TextControllerExampleState extends State<TextControllerExample> {
+
+  String year = "";
   final TextEditingController _bookTitleController = TextEditingController();
   final TextEditingController _bookAuthorController = TextEditingController();
+  final TextEditingController _bookPublishedYearController = TextEditingController();
 
   final List<String> bookTitleList = ["Narnia", "The Story of a Soul", "The Lord of the Rings"];
   final List<String> bookAuthorList = ["C.S Lewis", "Thérèse of Lisieux","J.R.R. Tolkien" ];
+  final List<String> bookYearList = ["1956", "1912","1960" ];
 
   @override
   void dispose() {
     _bookTitleController.dispose();
     _bookAuthorController.dispose();
+    _bookPublishedYearController.dispose();
     super.dispose();
   }
 
@@ -26,11 +31,12 @@ class _TextControllerExampleState extends State<TextControllerExample> {
     setState(() {
       bookTitleList.add(_bookTitleController.text);
       bookAuthorList.add(_bookAuthorController.text);
+      bookYearList.add(_bookPublishedYearController.text);
     });
     print("new book added");
     _bookTitleController.clear();
     _bookAuthorController.clear();
-
+    _bookPublishedYearController.clear();
   }
 
   void deleteBook() {
@@ -38,6 +44,7 @@ class _TextControllerExampleState extends State<TextControllerExample> {
       if (bookTitleList.length > 0){
         bookTitleList.removeLast();
         bookAuthorList.removeLast();
+        bookYearList.removeLast();
       }
     });
     print("deleted!");
@@ -72,6 +79,17 @@ class _TextControllerExampleState extends State<TextControllerExample> {
                ),
              ),),
            SizedBox(height:20),
+           SizedBox(
+             width: 250,
+             child: TextField(
+               controller: _bookPublishedYearController,
+               decoration: InputDecoration(
+                 labelText: "Enter the year this book was published",
+                 border: UnderlineInputBorder()
+               ),
+             ),
+           ),
+           SizedBox(height: 20,),
            Row(
              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
              children: [
@@ -80,6 +98,15 @@ class _TextControllerExampleState extends State<TextControllerExample> {
              ElevatedButton(onPressed: deleteBook, child: Text("Delete Book")),
            ],),
            SizedBox(height:20),
+           ElevatedButton(onPressed: (){
+             print(_bookPublishedYearController.text);
+             print(_bookAuthorController.text);
+             print(_bookTitleController.text);
+             setState(() {
+               year = _bookPublishedYearController.text;
+             });
+           }, child: Text("year")),
+           Text(year),
            Expanded(
              child:
                  Container(

@@ -10,6 +10,7 @@ class TextFieldExample extends StatefulWidget {
 class _TextFieldExampleState extends State<TextFieldExample> {
 
   String _inputText = "";
+  String username = "";
   List<String> todos = [];
 
   @override
@@ -36,6 +37,30 @@ class _TextFieldExampleState extends State<TextFieldExample> {
                },
              ),
            ),
+           SizedBox(height: 15),
+           SizedBox(
+             width: 300,
+             child: TextField(
+               style: TextStyle(color: Colors.white70),
+               decoration: InputDecoration(
+                 labelText: "Enter your username",
+                 labelStyle: TextStyle(color: Colors.white54),
+                 filled: true,
+                 fillColor: Colors.black38,
+                 focusedBorder: OutlineInputBorder(
+                   borderSide: BorderSide(color: Colors.lightGreen)
+                 ),
+                 border: OutlineInputBorder()
+               ),
+               onChanged: (value){
+                 setState(() {
+                   username = value;
+                 });
+               },
+             ),
+           ),
+           SizedBox(height: 15),
+           Text("${username}", style: TextStyle(color: Colors.white54),),
            TextButton(onPressed: (){
              print("input text is $_inputText");
              todos.add(_inputText);

@@ -4,6 +4,7 @@ import 'text_field_example.dart';
 import 'text_controller.dart';
 import 'some_widget.dart';
 import 'social_media_example.dart';
+import 'in_class_example.dart';
 
 
 void main() {
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: Scaffold(
-        backgroundColor: Color(0xff191919),
+        backgroundColor: Color(0xffa3a3a3),
         appBar: AppBar(
           title: Text("Stateful Widgets", style: TextStyle(color: Colors.white)),
           backgroundColor: Colors.black38,
@@ -35,55 +36,6 @@ class MyApp extends StatelessWidget {
 }
 
 
-// class content
-class CounterPage extends StatefulWidget {
-  @override
-  _CounterPageState createState() => _CounterPageState();
-}
-
-class _CounterPageState extends State<CounterPage> {
-  // State variables go here
-  int _counter = 0;
-
-  void increment() {
-    setState(() {
-      _counter += 1;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-        child: Column(
-          children: [
-            Text('$_counter', style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 32
-            )),
-            SizedBox(height:10),
-            ElevatedButton(
-              onPressed: (){
-                print("+ button pressed!!!");
-                increment();
-              },
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.blue[700],
-              ),
-              child: Text("+")
-            ),
-            SizedBox(height: 10,),
-            ElevatedButton(onPressed: (){
-              print("number should decrease");
-              setState(() {
-                _counter -= 1;
-              });
-            }, child: Text("-"))
-          ],
-        )
-      );
-  }
-}
 
 
 
