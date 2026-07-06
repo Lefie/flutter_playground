@@ -30,12 +30,42 @@ class MyApp extends StatelessWidget {
             child: Column(
                children: [
               SizedBox(height:30),
-              Expanded(child: IntakeForm()),
+              Expanded(child: MyForm()),
+              //Expanded(child: IntakeForm()),
             ],
           ),
           ),
         ),
       )
+    );
+  }
+}
+
+class MyForm extends StatefulWidget {
+  @override
+  State<MyForm> createState() => MyFormState();
+}
+
+class MyFormState extends State<MyForm> {
+
+  final _formKey = GlobalKey<FormState>();
+  bool isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          CheckboxListTile(
+             title: Text("Agree to terms and condition", style: TextStyle(color: Colors.white54)),
+              value: isChecked,
+              onChanged: (bool? value) {
+                setState(() {
+                  isChecked = !isChecked;
+                });
+            })
+      ],)
     );
   }
 }
