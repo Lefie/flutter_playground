@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
       appBar: AppBar(title: Center(child: Text("Lists",),),) ,
       body: Center(
-            child: Example2()
+            child: ExampleWorldCup()
           ),
       ),
     );
@@ -38,6 +38,13 @@ class People {
   final String email;
 
   People(this.name, this.email);
+}
+
+class WorldCupLikes {
+  String countryName;
+  int likeCount;
+
+  WorldCupLikes({ this.countryName = "Argentina", this.likeCount = 0});
 }
 
 class Example1 extends StatelessWidget {
@@ -184,6 +191,46 @@ class Example4 extends StatelessWidget {
     );
   }
 }
+
+class ExampleWorldCup extends StatefulWidget {
+  const ExampleWorldCup({super.key});
+
+  @override
+  State<ExampleWorldCup> createState() => ExampleWorldCupState();
+
+}
+
+class ExampleWorldCupState extends State<ExampleWorldCup> {
+
+  List<WorldCupLikes> teams = [
+    WorldCupLikes(countryName: "Argentina", likeCount: 0),
+    WorldCupLikes(countryName: "France", likeCount: 0),
+    WorldCupLikes(countryName: "Switzerland", likeCount: 0),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+        itemBuilder: (context, index){
+          return ListTile(
+            title: Text(teams[index].countryName),
+            subtitle: Text(teams[index].likeCount.toString()),
+            trailing: IconButton(onPressed: (){
+              print(teams[index].countryName);
+              setState(() {
+                teams[index].likeCount ++;
+              });
+            }, icon: Icon(Icons.favorite_border)),
+          );
+        },
+        separatorBuilder: (context, index){
+          return SizedBox(height:2);
+        },
+        itemCount: teams.length);
+  }
+
+}
+
 
 
 
