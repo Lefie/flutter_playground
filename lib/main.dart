@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
       appBar: AppBar(title: Center(child: Text("Lists",),),) ,
-      body: ListViewSeparatedExample(),
+      body: Example1(),
       ),
     );
   }
@@ -50,6 +50,7 @@ class WorldCupLikes {
 
 class Example1 extends StatelessWidget {
   Example1({super.key});
+
 
   List<Map<String, dynamic>> mallNavigations = [
     {
