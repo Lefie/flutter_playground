@@ -25,20 +25,21 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
       appBar: AppBar(title: Center(child: Text("Lists",),),) ,
-      body: Center(
-            child: ExampleWorldCup()
-          ),
+      body: ListViewSeparatedExample(),
       ),
     );
   }
 }
 
 class People {
-  final String name;
-  final String email;
+  String? name;
+  String? email;
+  String? gender;
 
-  People(this.name, this.email);
+  People({this.name, this.email, this.gender});
 }
+
+
 
 class WorldCupLikes {
   String countryName;
@@ -89,6 +90,7 @@ class Example1 extends StatelessWidget {
   }
 }
 
+/*
 class Example2 extends StatelessWidget {
   Example2({super.key});
 
@@ -114,6 +116,8 @@ class Example2 extends StatelessWidget {
     );
   }
 }
+*/
+
 
 class Example3 extends StatelessWidget {
   Example3({super.key});
@@ -230,6 +234,136 @@ class ExampleWorldCupState extends State<ExampleWorldCup> {
   }
 
 }
+
+class ListViewExample extends StatelessWidget {
+  const ListViewExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        SizedBox(height: 2,),
+        ListTile(
+          tileColor: Color(0xff52c5f3),
+          leading: Icon(Icons.person),
+          title: Text("Winnie"),
+          subtitle: Text("winnie@gmail.com"),
+          trailing: Icon(Icons.arrow_right),
+          onTap: (){
+            print("Winnie");
+          },
+        ),
+        SizedBox(height: 2,),
+        ListTile(
+          tileColor: Color(0xff52c5f3),
+          leading: Icon(Icons.person),
+          title: Text("Jack"),
+          subtitle: Text("jack@gmail.com"),
+          trailing: Icon(Icons.arrow_right),
+          onTap: (){
+            print("Jack");
+          },
+        ),
+        SizedBox(height: 2,),
+        ListTile(
+          tileColor: Color(0xff52c5f3),
+          leading: Icon(Icons.person),
+          title: Text("Lily"),
+          subtitle: Text("lily@gmail.com"),
+          trailing: Icon(Icons.arrow_right),
+          onTap: (){
+            print("Lily");
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class ListViewBuilderExample extends StatelessWidget {
+   ListViewBuilderExample({super.key});
+
+  final List<Map<String, dynamic>> contacts = [
+    {
+      "name": "Winnie",
+      "email": "winnie@gmail.com",
+      "gender": "female"
+    }, {
+      "name": "Jack",
+      "email": "jack@gmail.com",
+      "gender": "male"
+    },
+    {
+    "name": "Patrick",
+    "email": "patrick@gmail.com",
+    "gender": "male"
+    }
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemCount: contacts.length ,
+        itemBuilder: (context, index){
+          return ListTile(
+            tileColor: Color(0xff52c5f3),
+            leading: contacts[index]["gender"] == "female" ? Icon(Icons.female) : Icon(Icons.male),
+            title: Text(contacts[index]["name"]),
+            subtitle: Text(contacts[index]["email"]),
+            trailing: Icon(Icons.arrow_right),
+            onTap: (){
+              print(contacts[index]["name"]);
+            },
+          );
+        }
+    );
+  }
+}
+
+class ListViewSeparatedExample extends StatelessWidget {
+  ListViewSeparatedExample({super.key});
+
+  final List<People> contacts = [
+    People(name: "Winnie", email: "winnie@gmail.com", gender:"female"),
+    People(name: "Jack", email: "jack@gmail.com", gender:"male"),
+    People(name: "Patrick", email: "patrick@gmail.com", gender:"male"),
+    People(name: "Patricia", email: "patricia@gmail.com", gender:"female"),
+    People(name: "Jason", email: "jason@gmail.com", gender:"male"),
+    People(name: "Penny", email: "penny@gmail.com", gender:"female")
+
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+        itemCount: contacts.length ,
+        itemBuilder: (context, index){
+          return Padding(
+              padding: EdgeInsets.all(12),
+              child: ListTile(
+              tileColor: Color(0xff52c5f3),
+              leading: contacts[index].gender == "female" ? Icon(Icons.female) : Icon(Icons.male),
+              title: Text(contacts[index].name!),
+              subtitle: Text(contacts[index].email!),
+              trailing: Icon(Icons.arrow_right),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+                side: BorderSide(color: Colors.blue, width: 1),
+              ),
+              onTap: (){
+                print(contacts[index].name!);
+              },
+            ),
+          );
+        },
+      separatorBuilder: (context, index){
+        return SizedBox(height: 2,);
+      },
+    );
+  }
+}
+
+
 
 
 
