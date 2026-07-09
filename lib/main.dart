@@ -36,11 +36,97 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFF61B7E8),
         useMaterial3: true,
       ),
-      home: AccountCreationScreen(),
-
+      //home: ScreenOne(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => ScreenOne(),
+        '/screen_two': (context) => ScreenTwo(),
+        '/screen_three': (context) => ScreenThree()
+      }
     );
   }
 }
+
+class ScreenOne extends StatelessWidget {
+  const ScreenOne({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Screen One"),),
+      body: Center(
+          child: SingleChildScrollView(
+          child: Column(children: [
+            Text("Screen One"),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: (){
+              print("Pressed");
+              Navigator.pushNamed(context,"/screen_two");
+            }, child: Text("Screen 2")),
+            ElevatedButton(onPressed: (){
+              print("Pressed");
+              Navigator.pushNamed(context,"/screen_three");
+            }, child: Text("Screen 3"))
+
+          ],),),
+        ),
+    );
+  }
+}
+
+class ScreenTwo extends StatelessWidget {
+  const ScreenTwo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Screen Two"),),
+      backgroundColor: Colors.greenAccent,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(children: [
+            Text("Screen Two"),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: (){
+              print("Pressed");
+              Navigator.pushNamed(context,"/");
+            }, child: Text("Screen 1")),
+            ElevatedButton(onPressed: (){
+              print("Pressed");
+              Navigator.pushNamed(context,"/screen_three");
+            }, child: Text("Screen 3"))
+          ],),),
+      ),
+    );
+  }
+}
+
+class ScreenThree extends StatelessWidget {
+  const ScreenThree({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Screen Three"),),
+      backgroundColor: Colors.limeAccent,
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(children: [
+            Text("Screen Three"),
+            SizedBox(height: 10,),
+            ElevatedButton(onPressed: (){
+              print("Pressed");
+              Navigator.pushNamed(context,"/");
+
+            }, child: Text("Screen 1"))
+
+          ],),),
+      ),
+    );
+  }
+}
+
+
 
 class Account {
   String? username;
