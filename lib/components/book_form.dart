@@ -82,14 +82,23 @@ class BookFormState extends State<BookForm> {
                         author = value!;
                       });
                     },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "author is required";
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 SizedBox(height: 10,),
                 SizedBox(
                   width: 300,
-                  child: Align(child:  DropdownButton<String>(
+                  child: Align(child:
+                  DropdownButton<String>(
                     isExpanded: true,
                     value: _selectedBookReadingStatus,
+                    dropdownColor: Color(0xff23a7ff),
+                    borderRadius: BorderRadius.circular(12),
                     items: [
                       DropdownMenuItem(
                         value:"",
@@ -130,6 +139,8 @@ class BookFormState extends State<BookForm> {
                   width: 300,
                   child: Align(child:  DropdownButton<String>(
                     isExpanded: true,
+                    dropdownColor: Color(0xff23a7ff),
+                    borderRadius: BorderRadius.circular(12),
                     value: _selectedRating,
                     items: [
                       DropdownMenuItem(
@@ -172,13 +183,14 @@ class BookFormState extends State<BookForm> {
                   children: [
                   TextButton(
                     onPressed: (){
-                      print("Cancel");
+                      print("Cancel. this button should take user to go back to home page.");
                     },
                     child: Text("Cancel"),),
                   SizedBox(width: 10,),
                   TextButton(
                       onPressed: (){
                         _bookFormKey.currentState!.save();
+                        _bookFormKey.currentState!.validate();
                         print("${author}, ${title}, ${status}, ${rating}");
                         Book b = Book(bookAuthor: author, bookTitle: title, bookStatus: status, bookRating: rating);
                         widget.getBookInfo(b);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './screens/book_intake_screen.dart';
+import './screens/reading_list_screen.dart';
 
 
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Color(0xff083f68),
           foregroundColor: Color(0xff84d0ff)
         ),
+        scaffoldBackgroundColor: Color(0xff84d0ff),
         textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(
               backgroundColor: Color(0xff083f68),
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: BookIntakeScreen(),
+      home: ReadingListScreen(),
     );
   }
 }

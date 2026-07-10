@@ -26,7 +26,6 @@ class BookIntakeScreenState extends State<BookIntakeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text("Add A Book")),
-        backgroundColor: Color(0xff84d0ff),
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(12),
