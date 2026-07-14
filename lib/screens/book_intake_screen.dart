@@ -40,8 +40,6 @@ class BookIntakeScreenState extends State<BookIntakeScreen> {
                 SizedBox(height:30),
                 BookForm(getBookInfo: updateBook),
                 SizedBox(height:30),
-
-
               ],
             ),
           ),
