@@ -24,7 +24,17 @@ class ReadingListScreenState extends State<ReadingListScreen> {
      body: SingleChildScrollView(
        child: Column(
          children: [
-           Container(child: Text("Search Bar"),),
+           SizedBox(height: 15,),
+           Container(child: Padding(padding: EdgeInsets.all(10),
+             child: SearchBar(
+             hintText: 'Search...',
+             leading: const Icon(Icons.search),
+             onChanged: (value) {
+               // Filter your list or trigger API call here
+               print('User typed: $value');
+             },
+           ),),),
+           SizedBox(height: 15,),
            Container(
              color: Colors.blue,
              height: 800,
