@@ -1,0 +1,50 @@
+Example 1:
+Registration Widget:
+
+Create a Registration Page as a stateful widget in its own file:
+A short and concise message to welcome the new user
+A form that contains the following elements:
+A text field that collects the user’s username
+A text field that collects the user’s email
+the email needs to be validated to have a proper email format
+A text field that collects the user’s password
+the length of the password should be no less than 7
+A registration button
+Center everything and give generous spacing between each two elements.
+The color should follow the App’s theme color
+
+Give me your plan before you start writing code
+
+Example 2:
+User Profile
+
+Create a UserProfile widget in a separate file
+
+Purpose: Display user information in a user profile
+
+Requirement:
+A profile photo or an icon that is a placeholder for the profile photo  (img or Icon)
+user’s username (String)
+user’s contact such as email (String)
+a short bio written by the user either about themselves about something they are interested in (String)
+their hobbies(List<String>)
+
+Example:
+Icon image, Winnie, winnie@gmail.com, currently reading a good book!, reading, quality time, coding
+
+Constraints:
+Stateless Widget
+data needs to be validated to make sure emails are in valid format
+
+Integration:
+Will be used in a screen scaffold
+receives data from a service that handles user profile information
+
+Style:
+Display user information in a card. The card should have slightly rounded corners
+The card has an off white background and a light blue border.
+The texts should be slightly darker blue to create a good contrast against the lighter background.
+Usernames should be bolder than the rest of the content.
+
+Please tell me your plan before you start coding
+
