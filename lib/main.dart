@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'registration_page.dart';
-import 'user_profile.dart';
+
+import 'practice_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           foregroundColor: Color(0xFF63AFFF),
         ),
       ),
-      home: const UserProfile(username: "Winnie",email: "winnie@gmail.com",bio:"I love reading books", hobbies: ["quality time","books","church"],),
+      home: const PracticeScreen(),
     );
   }
 }
