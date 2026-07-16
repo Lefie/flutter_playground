@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "69550257474",
+    "project_id": "watermelon-summer-project",
+    "storage_bucket": "watermelon-summer-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69550257474:android:33013cc35bd701f71884db",
+        "android_client_info": {
+          "package_name": "com.example.flutter_playground"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ32Yw7Zah1U1GgSLWVSyX5zorbKt_qyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
