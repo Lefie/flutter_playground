@@ -32,13 +32,201 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: UserProfileScreen(),
+      home: HomeScreen(),
+    );
+  }
+}
+
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Container(
+          width: double.infinity,
+          child: Padding(
+            padding: EdgeInsets.all(2),
+              child: Column(
+              children: [
+                UserProfileForm(),
+              ],
+        ),
+      ),
+      ),
+      ),
+    );
+  }
+}
+
+String movieName = "Spiderman: Brand New Day";
+
+class Movie extends StatelessWidget {
+  const Movie({super.key, required this.movieName});
+
+  final String movieName;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(movieName, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),);
+  }
+}
+
+
+
+
+class UserProfileForm extends StatefulWidget {
+  const UserProfileForm({super.key});
+
+  @override
+  State<UserProfileForm> createState() => UserProfileFormState();
+}
+
+class UserProfileFormState extends State<UserProfileForm> {
+  final _UserProfileFormKey = GlobalKey<FormState>();
+  String username = "";
+  String bio = "";
+  bool isTomHollandFan = false;
+  String spidermanActor = "";
+  bool isMorningPerson = false;
+  String anticipatedMovie = "Spiderman";
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _UserProfileFormKey,
+      child: Padding(
+          padding: EdgeInsets.only(left:15, right:15),
+          child:
+            Column(
+            children: [
+              SizedBox(height: 20,),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                  hintText: 'Please enter your username',
+                  border: OutlineInputBorder(),
+                ),
+                onSaved: (String? value){
+                  if (value != null) {
+                    setState(() {
+                      username = value;
+                    });
+                  }
+                },
+                validator: (String? value){
+                  if (value == null || value.isEmpty) {
+                    return "username is required";
+                  }
+                  return null;
+
+                },
+              ),
+              TextFormField(
+                maxLines: 3,
+                decoration: InputDecoration(
+                  hintText: 'Talk a little bit about yourself',
+                  border: OutlineInputBorder(),
+                ),
+                onSaved: (String? value) {
+                    if(value != null) {
+                      setState(() {
+                        bio = value;
+                      });
+                    }
+                }
+              ),
+              SizedBox(height: 15,),
+              CheckboxListTile(
+                title: Text("Tom Holland Fan?"),
+                value: isTomHollandFan,
+                onChanged: (bool? value){
+                  setState(() {
+                    isTomHollandFan = value!;
+                  });
+                },
+              ),
+              SizedBox(height: 15,),
+              Text("Favorite Spiderman Actor ?", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+              RadioListTile(
+                  title: Text("Tom Holland"),
+                  value: "tom",
+                  groupValue: spidermanActor,
+                  onChanged: (String? value){
+                    setState(() {
+                      spidermanActor = value!;
+                    });
+
+                  }),
+
+              RadioListTile(
+                  title: Text("Andrew Garfield"),
+                  value: "andrew",
+                  groupValue: spidermanActor,
+                  onChanged: (String? value){
+                    setState(() {
+                      spidermanActor = value!;
+                    });
+                  }),
+
+              RadioListTile(
+                  title: Text("Toby Maguire"),
+                  value: "toby",
+                  groupValue: spidermanActor,
+                  onChanged: (String? value){
+                    setState(() {
+                      spidermanActor = value!;
+                    });
+                  }),
+
+              SizedBox(height: 10,),
+
+              SwitchListTile(
+                  title: Text("Morning Person?"),
+                  value: isMorningPerson,
+                  onChanged: (bool value){
+                    setState(() {
+                      isMorningPerson = value;
+                    });
+                  }),
+
+              Text("What is your most anticipated upcoming movie?", style: TextStyle(fontSize: 22),),
+              DropdownButton<String>(
+                  value: anticipatedMovie,
+                  items: [
+                    DropdownMenuItem(value:"Spiderman",child: Text("Spiderman: Brand New Day")),
+                    DropdownMenuItem(value:"Odyssey",child: Text("The Odyssey")),
+                    DropdownMenuItem(value:"Avengers",child: Text("Avengers: Doomsday")),
+                  ],
+                  onChanged: (String? value){
+                    setState(() {
+                      anticipatedMovie = value!;
+                    });
+                  }),
+
+                Text("$username, $bio, $isTomHollandFan, ${spidermanActor}, ${isMorningPerson}, ${anticipatedMovie}"),
+                ElevatedButton(onPressed: (){
+                _UserProfileFormKey.currentState!.save();
+                _UserProfileFormKey.currentState!.validate();
+
+                }, child: Text("Submit")),
+
+            ],
+          ),)
+
     );
   }
 }
 
 
 
+
+
+
+/*
 class User {
   User({required this.username, required this.age, this.hobbies});
 
@@ -246,7 +434,7 @@ class UserProfileFormState extends State<UserProfileForm> {
   }
 }
 
-
+*/
 
 
 
