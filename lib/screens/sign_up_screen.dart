@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../service/auth_service.dart';
 
 
 class SignUpScreen extends StatefulWidget {
@@ -11,8 +12,24 @@ class SignUpScreen extends StatefulWidget {
 class SignUpScreenState extends State<SignUpScreen> {
 
   final _signupFormKey = GlobalKey<FormState>();
+  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _authService = AuthService();
 
+  Future<void> _submit() async{
+    print("info submitted ${_usernameController.text.trim()}, ${_emailController.text.trim()}, ${_passwordController.text.trim()}");
+    await _authService
+        .userSignUp(email: _emailController.text.trim(), password: _passwordController.text.trim(), username:_usernameController.text.trim());
+  }
 
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +42,13 @@ class SignUpScreenState extends State<SignUpScreen> {
               padding: EdgeInsets.only(top:20,bottom: 20, left:50,right:50),
               child: Container(
                 width: double.infinity,
-                height: 400,
+
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text("Welcome!", style: TextStyle(fontSize: 28 ),),
                   TextFormField(
+                    controller: _usernameController,
                     decoration: InputDecoration(
                       labelText: "Username",
                       hintText: "winnie",
@@ -41,6 +59,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                   ),
                   SizedBox(height: 20,),
                   TextFormField(
+                    controller: _emailController,
                     decoration: InputDecoration(
                       labelText: "Email",
                       hintText: "winnie@gmail.com",
@@ -52,6 +71,7 @@ class SignUpScreenState extends State<SignUpScreen> {
                   ),
                   SizedBox(height: 15,),
                   TextFormField(
+                    controller: _passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: "Passowrd",
@@ -63,10 +83,8 @@ class SignUpScreenState extends State<SignUpScreen> {
                   ),
                   SizedBox(height: 30,),
                   ElevatedButton(
-                      onPressed: (){
-
-                      }, child: Text("Register"))
-
+                      onPressed: _submit, child: Text("Register")),
+                  ElevatedButton(onPressed: _authService.signOut, child: Text("Logout"))
                 ],
                 ),
               ),

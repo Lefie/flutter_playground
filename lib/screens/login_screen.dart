@@ -10,12 +10,25 @@ class LoginScreen extends StatefulWidget {
 
 class LoginScreenState extends State<LoginScreen> {
 
+  final _loginFormKey = GlobalKey<FormState>();
+  final _emailControler = TextEditingController();
+  final _passwordControler = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailControler.dispose();
+    _passwordControler.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: Form(
-          child: SingleChildScrollView(
+        key: _loginFormKey,
+        child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.only(top:20,bottom: 20, left:50,right:50),
               child: Container(
@@ -27,6 +40,7 @@ class LoginScreenState extends State<LoginScreen> {
                     Text("Welcome back!", style: TextStyle(fontSize: 28 ),),
                     SizedBox(height: 20,),
                     TextFormField(
+                      controller: _emailControler,
                       decoration: InputDecoration(
                         labelText: "Email",
                         hintText: "winnie@gmail.com",
@@ -38,6 +52,7 @@ class LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 15,),
                     TextFormField(
+                      controller: _passwordControler,
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: "Passowrd",
