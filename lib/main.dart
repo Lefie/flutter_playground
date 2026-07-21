@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_playground/screens/home_screen.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import './screens/login_screen.dart';
 import './screens/sign_up_screen.dart';
+import './service/user_provider.dart';
 
 
 
@@ -12,7 +15,13 @@ Future<void> main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+
+  runApp(
+    ChangeNotifierProvider(
+        create: (_) => UserProvider(),
+        child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +40,11 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: SignUpScreen(),
+      home: Consumer<UserProvider>(
+        builder: (context, userPro, _ ){
+          return userPro.user == null ? LoginScreen() : HomeScreen();
+        },
+      ),
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_playground/screens/home_screen.dart';
+import 'package:flutter_playground/screens/sign_up_screen.dart';
+import '../service/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,14 +13,19 @@ class LoginScreen extends StatefulWidget {
 class LoginScreenState extends State<LoginScreen> {
 
   final _loginFormKey = GlobalKey<FormState>();
-  final _emailControler = TextEditingController();
-  final _passwordControler = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _authService = AuthService();
 
   @override
   void dispose() {
-    _emailControler.dispose();
-    _passwordControler.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
     super.dispose();
+  }
+
+  Future<void> _submit() async{
+    await _authService.userSignIn(email: _emailController.text.trim() , password: _passwordController.text.trim());
   }
 
 
@@ -40,7 +47,7 @@ class LoginScreenState extends State<LoginScreen> {
                     Text("Welcome back!", style: TextStyle(fontSize: 28 ),),
                     SizedBox(height: 20,),
                     TextFormField(
-                      controller: _emailControler,
+                      controller: _emailController,
                       decoration: InputDecoration(
                         labelText: "Email",
                         hintText: "winnie@gmail.com",
@@ -52,7 +59,7 @@ class LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 15,),
                     TextFormField(
-                      controller: _passwordControler,
+                      controller: _passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         labelText: "Passowrd",
@@ -64,8 +71,14 @@ class LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 30,),
                     ElevatedButton(
-                        onPressed: (){
-                        }, child: Text("Sign In"))
+                        onPressed: _submit, child: Text("Sign In")),
+                    SizedBox(height: 10,),
+                    TextButton(onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUpScreen()  )
+                      );
+                    }, child: Text("Don't have an account? Create a new one!"))
 
                   ],
                 ),

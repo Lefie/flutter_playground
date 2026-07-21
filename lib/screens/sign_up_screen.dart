@@ -21,6 +21,9 @@ class SignUpScreenState extends State<SignUpScreen> {
     print("info submitted ${_usernameController.text.trim()}, ${_emailController.text.trim()}, ${_passwordController.text.trim()}");
     await _authService
         .userSignUp(email: _emailController.text.trim(), password: _passwordController.text.trim(), username:_usernameController.text.trim());
+    if (mounted) {
+      Navigator.pop(context);
+    }
   }
 
   @override
@@ -42,10 +45,9 @@ class SignUpScreenState extends State<SignUpScreen> {
               padding: EdgeInsets.only(top:20,bottom: 20, left:50,right:50),
               child: Container(
                 width: double.infinity,
-
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+                  children: [
                   Text("Welcome!", style: TextStyle(fontSize: 28 ),),
                   TextFormField(
                     controller: _usernameController,
@@ -84,7 +86,6 @@ class SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(height: 30,),
                   ElevatedButton(
                       onPressed: _submit, child: Text("Register")),
-                  ElevatedButton(onPressed: _authService.signOut, child: Text("Logout"))
                 ],
                 ),
               ),

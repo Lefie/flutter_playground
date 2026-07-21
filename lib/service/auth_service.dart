@@ -9,7 +9,6 @@ class AuthService {
   method to sign up a new user
   input: email (String), password(String)
   output: Future<void>
-
   */
   Future<void> userSignUp({required String email, required String password, required String username}) async{
 
@@ -19,17 +18,20 @@ class AuthService {
         password: password,
       );
       await credential.user!.updateDisplayName(username);
-      print(credential.user!.email);
-      print(credential.user!.displayName);
+
 
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        throw Exception('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        throw Exception('The account already exists for that email.');
+      } else if (e.code == 'invalid-email') {
+        throw Exception('Please enter a valid email address.');
+      } else {
+        throw Exception('Sign up failed. Please try again.');
       }
     } catch (e) {
-      print(e);
+      throw Exception("something went wrong, please try again");
     }
 
   }
@@ -41,16 +43,22 @@ class AuthService {
   */
   Future<void> userSignIn({required String email, required String password}) async{
     try {
-      final credential = await auth.signInWithEmailAndPassword(
+      await auth.signInWithEmailAndPassword(
           email: email,
           password: password
       );
 
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        throw Exception('No user found for that email.');
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        throw Exception('Wrong password provided for that user.');
+      } else if (e.code == 'invalid-email') {
+        throw Exception('Please enter a valid email address.');
+      } else if (e.code == 'invalid-credential') {
+        throw Exception('The email or password is incorrect.');
+      } else {
+        throw Exception('Sign in failed. Please try again.');
       }
     }
   }
@@ -63,11 +71,19 @@ class AuthService {
   // get current user specific information
   void displayCurUserInfo() {
     User? credential = auth.currentUser;
-    String? email = credential?.email;
-    String? username = credential?.displayName;
-    String? id = credential?.uid;
+    if(credential != null) {
+      print(credential.providerData);
 
-    print("${email}, ${username}, ${id}");
+      for (final providerProfile in credential.providerData ) {
+        print(providerProfile.providerId);
+        print(providerProfile.uid);
+        print(providerProfile.displayName);
+        print(providerProfile.email);
+
+      }
+
+    }
+
 
   }
 
