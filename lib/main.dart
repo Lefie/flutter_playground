@@ -7,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import './screens/login_screen.dart';
 import './screens/sign_up_screen.dart';
 import './service/user_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 
