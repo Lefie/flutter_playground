@@ -11,8 +11,7 @@ class HomeScreen extends StatelessWidget {
 
 
     final user = context.watch<UserProvider>().user;
-    final _auth = AuthService();
-    print("user object $user");
+    final _authService = AuthService();
 
 
     return Scaffold(
@@ -24,7 +23,7 @@ class HomeScreen extends StatelessWidget {
             Center(child: Text("Welcome, ${user?.displayName ?? 'friend'}")),
             SizedBox(height: 100,),
             ElevatedButton(onPressed: () async{
-               await _auth.signOut();
+               await _authService.signOut();
             }, child: Text("Log out"))
           ],
         ),
