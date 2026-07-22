@@ -62,6 +62,8 @@ class HomeScreenState extends State<HomeScreen>{
                  }
 
               }, child: Text("next")),
+              Image.asset("assets/img1.png",
+              width: 100,height: 100, fit: BoxFit.cover,),
               ElevatedButton(onPressed: () async{
                 await _authService.signOut();
               }, child: Text("Log out"))
