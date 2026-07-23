@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 void main() {
@@ -15,19 +16,28 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(
-              seedColor: Color(0xffa6003b),
-              brightness: Brightness.light
-          ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF17aaff)),
+
+          //App Bar Theme
           appBarTheme: AppBarTheme(
-              backgroundColor: Color(0xffa6003b),
-              foregroundColor: Colors.white
-          ) ,
+            backgroundColor: Color(0xff3ab2ff),
+            foregroundColor: Color(0xff1c294a),
+          ),
+          // Text Theme
+          textTheme: TextTheme(
+            headlineLarge: GoogleFonts.dmSerifDisplay(
+                textStyle: TextStyle(fontSize: 38,
+                    fontWeight: FontWeight.w900,
+                    color: Color(0xff1c294a))),
+            bodyMedium: GoogleFonts.indieFlower(
+                textStyle: TextStyle(fontSize: 23, fontWeight: FontWeight.w500, color: Color(0xffffffff))
+            )
+          ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xffa6003b),
-              foregroundColor: Colors.white
-            ),
+              backgroundColor: Color(0xff1c294a),
+              foregroundColor: Color(0xff69ccf0),
+            )
           )
 
         ),
@@ -35,6 +45,11 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
 
 class StyledHomeScreen extends StatelessWidget {
 
@@ -87,8 +102,6 @@ class StyledHomeScreen extends StatelessWidget {
     );
 
   }
-
-
 }
 
 
